@@ -10,8 +10,10 @@ class RegisterController extends Controller
     {
         return view('register.index');
     }
-    public function store()
+    public function store(Request $request)
     {
+        dd($request->all()); //реквесты надо обрабатывать в контроллерах
+
         return 'Запрос на регистрацию';
     }
 }

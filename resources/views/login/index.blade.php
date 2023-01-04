@@ -11,8 +11,7 @@
     </x-card-header>
     <div>
         <div class="card-body">
-            <form action="{{route('login.store')}}" method="POST">
-            <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
+            <x-form action="{{route('login.store')}}" method="POST">
                 <x-form-item>
                     <x-label>{{__('Email')}}</x-label>
                     <x-input type="email" name="email"/>
@@ -29,7 +28,7 @@
                 <x-button type="submit">
                     {{__('Войти')}}
                 </x-button>
-            </form>
+            </x-form>
         </div>
     </div>
 </x-card>

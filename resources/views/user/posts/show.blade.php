@@ -9,6 +9,11 @@
             {{__('Назад')}}
         </a>
     </x-slot>
+    <x-slot name="right">
+        <x-button-link href="{{ route('user.posts.edit', $post->id) }}">
+            {{__('Редактировать')}}
+        </x-button-link>
+    </x-slot>
 </x-title>
 <div>
     {{$post->body}}

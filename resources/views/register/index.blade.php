@@ -11,7 +11,7 @@
     </x-card-header>
     <div>
         <div class="card-body">
-            <form action="{{route('register.store')}}" method="POST">
+            <x-form action="{{route('register.store')}}" method="POST">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
                 <x-form-item>
                     <x-label>{{__('Имя')}}</x-label>
@@ -37,7 +37,7 @@
                 <x-button type="submit">
                     {{__('Зарегистрироваться')}}
                 </x-button>
-            </form>
+            </x-form>
         </div>
     </div>
 </x-card>
