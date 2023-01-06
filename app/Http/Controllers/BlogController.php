@@ -21,17 +21,18 @@ class BlogController extends Controller
         $search = $request->input('search');
         $category_id = $request->input('category_id');
 
-        $posts =array_filter($posts, function($post) use($search, $category_id){
-            if($post && ! str_contains($post->title, $search)){
+        $posts = array_filter($posts, function($post) use ($search, $category_id){
+            if($search && ! str_contains(strtolower($post->title), strtolower($search))){
                 return false;
             }
 
-            if($post && $post->category_id != $category_id){
+            if($category_id && $post->category_id != $category_id){
                 return false;
             }
 
             return true;
         });
+
         return view('blog.index', compact('posts'));
     }
 

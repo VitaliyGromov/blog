@@ -11,8 +11,10 @@ class LoginController extends Controller
         return view('login.index');
     }
 
-    public function store()
-    {
-        return 'Запрос на вход';
+    public function store(Request $request)
+    {  
+        setSessionValue('alert', 'Добро пожаловать');
+        
+        return redirect()->route('user');
     }
 }

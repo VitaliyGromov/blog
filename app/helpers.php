@@ -9,4 +9,13 @@ if (!function_exists('activeLink')) {
         return Route::is($name) ? 'active' : '';
     }
 }
+
+
+if(!function_exists('setSessionValue')){
+
+    function setSessionValue(string $key, string $value)
+    {
+        session([$key => $value]);
+    }
+}
 ?>

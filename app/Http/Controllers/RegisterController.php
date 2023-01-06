@@ -12,8 +12,9 @@ class RegisterController extends Controller
     }
     public function store(Request $request)
     {
-        dd($request->all()); //реквесты надо обрабатывать в контроллерах
-
-        return 'Запрос на регистрацию';
+        if(true){
+            return redirect()->back()->withInput(); 
+        }
+        return redirect()->route('user');
     }
 }

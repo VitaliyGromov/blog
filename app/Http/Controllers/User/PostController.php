@@ -17,22 +17,7 @@ class PostController extends Controller
         ];
 
         $posts = array_fill(0, 10, $post);
-
-        $search = $request->input('search');
-        $category_id = $request->input('category_id');
-
-        $posts =array_filter($posts, function($post) use($search, $category_id){
-            if($post && ! str_contains($post->title, $search)){
-                return false;
-            }
-
-            if($post && $post->category_id != $category_id){
-                return false;
-            }
-
-            return true;
-        });
-         
+        
         return view('user.posts.index', compact('posts'));
     }
 
@@ -43,11 +28,7 @@ class PostController extends Controller
 
     public function store(Request $request)
     {
-        $title = $request->input('title');
-        $content = $request->input('content');
-
-        dd($title, $content);
-        return 'Запрос на создание поста';
+        return redirect()->route('user.posts.show', 1);
     }
 
     public function show($post)
@@ -74,19 +55,16 @@ class PostController extends Controller
 
     }
 
-    public function update(Request $request)
+    public function update(Request $request, $post)
     {
-        $title = $request->input('title');
-        $content = $request->input('content');
-
-        dd($title, $content);
-
-        return 'Запрос на изменение поста';
+        // return redirect()->route('user.posts.show', $post);
+        // the same
+        return redirect()->back();
     }
 
-    public function destroy()
+    public function destroy($post)
     {
-        return 'Запрос на удаление поста';
+        return redirect()->route('user.posts');
     }
 
     public function like()
