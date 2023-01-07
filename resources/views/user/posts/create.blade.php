@@ -20,7 +20,7 @@
             <x-label>
                 {{ __('Текст поста') }}
             </x-label>
-            <x-trix name="content"></x-trix>
+            <x-trix name="body"></x-trix>
         </x-form-item>
         <x-button type="submit">
             {{__('Создать')}}

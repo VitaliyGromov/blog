@@ -28,7 +28,7 @@ class PostController extends Controller
 
     public function store(Request $request)
     {
-        return redirect()->route('user.posts.show', 1);
+        // return redirect()->route('user.posts.show', 1);
     }
 
     public function show($post)
