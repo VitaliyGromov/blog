@@ -18,4 +18,11 @@ if(!function_exists('setSessionValue')){
         session([$key => $value]);
     }
 }
+
+if(!function_exists('validate')){
+    function validate(array $attributes, array $rules): array
+    {
+        return validator($attributes, $rules)->validate();
+    }
+}
 ?>

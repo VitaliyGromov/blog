@@ -28,6 +28,13 @@ class PostController extends Controller
 
     public function store(Request $request)
     {
+        $validated = validate($request->all(), [
+            'title' => ['required', 'string', 'max:300'],
+            'body' => ['required', 'string'],
+        ]);
+
+        dd($validated);
+
         // return redirect()->route('user.posts.show', 1);
     }
 
@@ -55,11 +62,14 @@ class PostController extends Controller
 
     }
 
-    public function update(Request $request, $post)
+    public function update(Request $request)
     {
-        // return redirect()->route('user.posts.show', $post);
-        // the same
-        return redirect()->back();
+        $validated = validate($request->all(), [
+            'title' => ['required', 'string', 'max:300'],
+            'body' => ['required', 'string'],
+        ]);
+
+        dd($validated);
     }
 
     public function destroy($post)

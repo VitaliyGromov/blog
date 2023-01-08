@@ -10,7 +10,7 @@
           <a class="nav-link {{ activeLink('home') }}" aria-current="page" href="{{route('home')}}">{{__('Главная')}}</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link {{ activeLink('blog') }}" href="{{ route('blog') }}">{{__('Блог')}}</a>
+          <a class="nav-link {{ activeLink('blog*') }}" href="{{ route('blog') }}">{{__('Блог')}}</a>
         </li>
       </ul>
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
