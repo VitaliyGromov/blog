@@ -5,7 +5,6 @@
         'name' => 'value'
         ])}} type="checkbox">
     <label class="form-check-label" {{$attributes->merge([
-
         'for' => 'value'
     ]) }}>
         {{ $slot }}
