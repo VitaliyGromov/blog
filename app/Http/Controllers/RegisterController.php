@@ -21,16 +21,16 @@ class RegisterController extends Controller
             'data-confirm' => ['accepted']
         ]);
 
-        $user = new User();
-
-        $user->first_name = $validated['first-name'];
-        $user->last_name = $validated['last-name'];
-        $user->email = $validated['email'];
-        $user->password = bcrypt($validated['password']); //пароль нужно хэшировать при помощи функции bcrypt()
-        $user->save();
+        $user = User::create([
+            'first_name' => $validated['first-name'],
+            'last_name' => $validated['last-name'],
+            'email' => $validated['email'],
+            'password' => bcrypt($validated['password']),
+        ]);
 
         dd($user);
 
         return redirect()->route('user');
     }
 }
+ 
