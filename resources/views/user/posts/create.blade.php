@@ -24,6 +24,18 @@
             <x-trix name="body"></x-trix>
             <x-error name="body"/>
         </x-form-item>
+        <x-form-item>
+            <x-label>
+                {{__('Дата публикации')}}
+            </x-label>
+            <x-input name="published_at" type="date"/>
+            <x-error name="published_at"/>
+        </x-form-item>
+        <x-form-item>
+            <x-checkbox name="published">
+                {{__('Опубликовать пост')}}
+            </x-checkbox>
+        </x-form-item>
         <x-button type="submit">
             {{__('Создать')}}
         </x-button>

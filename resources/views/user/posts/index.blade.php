@@ -21,7 +21,11 @@
                         {{ $post->title }}
                     </a>
                 </h5>
+                <div class="small text-muted">
+                    {{$post->published_at}}
+                </div>
             </div>
         @endforeach
+        {{$posts->links()}}
      @endif
 @endsection 

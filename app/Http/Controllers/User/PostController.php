@@ -4,19 +4,15 @@ namespace App\Http\Controllers\User;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Post;
+use App\Models\User;
+use Carbon\Carbon;
 
 class PostController extends Controller
 {
     public function index(Request $request)
     {
-        $post = (object)[
-            'id' => 1,
-            'title' => 'Lorem, ipsum dolor.',
-            'body' => 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Labore iusto molestiae expedita magni cupiditate sunt aliquid, odio doloremque laborum officiis.',
-            'category_id' => 1
-        ];
-
-        $posts = array_fill(0, 10, $post);
+        $posts = Post::query()->paginate(12, ['id', 'title', 'published_at']);
         
         return view('user.posts.index', compact('posts'));
     }
@@ -31,9 +27,19 @@ class PostController extends Controller
         $validated = validate($request->all(), [
             'title' => ['required', 'string', 'max:300'],
             'body' => ['required', 'string'],
+            'published' => ['nullable', 'boolean'],
+            'published_at' => ['nullable','string', 'date'],
         ]);
 
-        dd($validated);
+        $post = Post::create([
+            'user_id' => User::value('id'),
+            'title' => $validated['title'],
+            'body' => $validated['body'],
+            'published' => $validated['published'] ?? false,
+            'published_at' => new Carbon($validated['published_at']) ?? null,
+        ]);
+
+        dd($post);
 
         // return redirect()->route('user.posts.show', 1);
     }
@@ -67,9 +73,17 @@ class PostController extends Controller
         $validated = validate($request->all(), [
             'title' => ['required', 'string', 'max:300'],
             'body' => ['required', 'string'],
+            'published' => ['nullable', 'boolean'],
+            'published_at' => ['nullable','string', 'date'],
         ]);
 
-        dd($validated);
+        $post = Post::create([
+            'user_id' => User::value('id'),
+            'title' => $validated['title'],
+            'body' => $validated['body'],
+            'published' => $validated['published'] ?? false,
+            'published_at' => new Carbon($validated['published_at']) ?? null,
+        ]);
     }
 
     public function destroy($post)

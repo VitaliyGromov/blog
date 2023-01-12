@@ -28,8 +28,6 @@ class RegisterController extends Controller
             'password' => bcrypt($validated['password']),
         ]);
 
-        dd($user);
-
         return redirect()->route('user');
     }
 }
