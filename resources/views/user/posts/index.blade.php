@@ -27,5 +27,5 @@
             </div>
         @endforeach
         {{$posts->links()}}
-     @endif
+    @endif
 @endsection 

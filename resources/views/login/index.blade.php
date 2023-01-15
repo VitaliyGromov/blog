@@ -1,6 +1,6 @@
-@extends('layouts.auth')
+@extends('layouts.aauth')
 
-@section('auth.content')
+@section('aauth.content')
 <x-card>
     <x-card-header>
         <div class="card-body">
@@ -28,6 +28,9 @@
                 <x-button type="submit">
                     {{__('Войти')}}
                 </x-button>
+                <x-button-link color="secondary" href="{{route('register')}}">
+                    {{__('Новый аккаунт')}}
+                </x-button-link>
             </x-form>
         </div>
     </div>

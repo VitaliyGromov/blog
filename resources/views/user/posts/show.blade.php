@@ -13,6 +13,9 @@
         <x-button-link href="{{ route('user.posts.edit', $post->id) }}">
             {{__('Редактировать')}}
         </x-button-link>
+        <x-button-link color="danger">
+            {{__('Удалить')}}
+        </x-button-link>
     </x-slot>
 </x-title>
 <div>

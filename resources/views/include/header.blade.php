@@ -15,10 +15,12 @@
       </ul>
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link {{ activeLink('register') }}" aria-current="page" href="{{ route('register') }}">{{__('Регистрация')}}</a>
+          <a class="nav-link {{ activeLink('user*') }}" aria-current="page" href="{{ route('user.posts') }}">{{__('Мои посты')}}</a>
         </li>
+      </ul>
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link {{ activeLink('login') }}" href="{{ route('login') }}">{{__('Вход')}}</a>
+          <a class="nav-link {{ activeLink('user*') }}" aria-current="page" href="{{ route('logout') }}">{{__('Выйти')}}</a>
         </li>
       </ul>
     </div>

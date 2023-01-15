@@ -7,12 +7,13 @@ use App\Http\Controllers\Controller;
 use App\Models\Post;
 use App\Models\User;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
     public function index(Request $request)
     {
-        $posts = Post::query()->paginate(12, ['id', 'title', 'published_at']);
+        $posts = Post::query()->where('user_id', Auth::id())->paginate(12, ['id', 'title', 'published_at']);
         
         return view('user.posts.index', compact('posts'));
     }
@@ -39,33 +40,17 @@ class PostController extends Controller
             'published_at' => new Carbon($validated['published_at']) ?? null,
         ]);
 
-        dd($post);
-
-        // return redirect()->route('user.posts.show', 1);
+        return redirect()->route('user.posts.show', 1);
     }
 
-    public function show($post)
+    public function show(Post $post)
     {
-        $post = (object)[
-            'id' => 1,
-            'title' => 'Lorem, ipsum dolor.',
-            'body' => 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Labore iusto molestiae expedita magni cupiditate sunt aliquid, odio doloremque laborum officiis.',
-        ];
-
         return view('user.posts.show', compact('post'));
     }
 
-    public function edit($post)
-    {
-        $post = (object)[
-            'id' => 1,
-            'title' => 'Lorem, ipsum dolor.',
-            'body' => 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Labore iusto molestiae expedita magni cupiditate sunt aliquid, odio doloremque laborum officiis.',
-            'category_id' => 1
-        ];
-        
+    public function edit(Post $post)
+    {  
         return view('user.posts.edit', compact('post'));
-
     }
 
     public function update(Request $request)
@@ -77,7 +62,7 @@ class PostController extends Controller
             'published_at' => ['nullable','string', 'date'],
         ]);
 
-        $post = Post::create([
+        $post = Post::query()->update([
             'user_id' => User::value('id'),
             'title' => $validated['title'],
             'body' => $validated['body'],
