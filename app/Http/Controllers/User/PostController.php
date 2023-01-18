@@ -40,7 +40,7 @@ class PostController extends Controller
             'published_at' => new Carbon($validated['published_at']) ?? null,
         ]);
 
-        return redirect()->route('user.posts.show', 1);
+        return redirect()->route('user.posts.show', compact('post'));
     }
 
     public function show(Post $post)
