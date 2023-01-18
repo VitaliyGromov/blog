@@ -13,8 +13,8 @@ class PostController extends Controller
 {
     public function index(Request $request)
     {
-        $posts = Post::query()->where('user_id', Auth::id())->paginate(12, ['id', 'title', 'published_at']);
-        
+        $posts = Post::query()->where('user_id', Auth::id())->paginate(12, ['title', 'published_at', 'id']);
+
         return view('user.posts.index', compact('posts'));
     }
 
@@ -33,7 +33,7 @@ class PostController extends Controller
         ]);
 
         $post = Post::create([
-            'user_id' => User::value('id'),
+            'user_id' => Auth::id(),
             'title' => $validated['title'],
             'body' => $validated['body'],
             'published' => $validated['published'] ?? false,
@@ -69,6 +69,8 @@ class PostController extends Controller
             'published' => $validated['published'] ?? false,
             'published_at' => new Carbon($validated['published_at']) ?? null,
         ]);
+
+        return redirect()->route('user.posts.show', compact('post'));
     }
 
     public function destroy($post)
