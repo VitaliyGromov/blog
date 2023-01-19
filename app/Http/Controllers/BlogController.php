@@ -15,7 +15,7 @@ class BlogController extends Controller
 
         $limit = $validated['limit'] ?? 12;
 
-        $posts = Post::query()->orderBy('published_at', 'desc')->paginate($limit, ['id', 'title', 'published_at']);
+        $posts = Post::query()->where('published', true)->orderBy('published_at', 'desc')->paginate($limit, ['id', 'title', 'published_at']);
 
         return view('blog.index', compact('posts'));
     }

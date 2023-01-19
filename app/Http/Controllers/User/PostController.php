@@ -15,7 +15,7 @@ class PostController extends Controller
     {
         $posts = Post::query()->where('user_id', Auth::id())->paginate(12, ['title', 'published_at', 'id']);
 
-        return view('user.posts', compact('posts'));
+        return view('user.posts.index', compact('posts'));
     }
 
     public function create()
@@ -28,26 +28,21 @@ class PostController extends Controller
         $validated = $request->validate([
             'title' => ['required', 'string', 'max:300'],
             'body' => ['required', 'string'],
-            'published' => ['nullable', 'boolean'],
+            'published' => ['nullable'],
             'published_at' => ['nullable','string', 'date'],
         ]);
 
         $post = new Post();
 
-        $post->title = $validated['title'];
-        $post->body = $validated['body'];
-        $post->user_id = 16;
-        $post->saveOrFail();
-        
-        // Post::create([
-        //     'title' => $validated['title'],
-        //     'body' => $validated['body'],
-        //     'published' => $validated['published'] ?? false,
-        //     'published_at' => new Carbon($validated['published_at']) ?? null,
-        //     'user_id' => Auth::id(),
-        // ]);
+        $post->create([
+            'title' => $validated['title'],
+            'body' => $validated['body'],
+            'published' => $validated['published'] ?? false,
+            'published_at' => new Carbon($validated['published_at']) ?? null,
+            'user_id' => Auth::id(),
+        ]);
 
-        return redirect()->route('user.posts.show', compact('post'));
+        return redirect()->route('user');
     }
 
     public function show(Post $post)
@@ -80,9 +75,11 @@ class PostController extends Controller
         return redirect()->route('user.posts.show', compact('post'));
     }
 
-    public function destroy($post)
+    public function destroy(Post $post)
     {
-        return redirect()->route('user.posts');
+        $post->delete();
+        
+        return redirect()->route('user');
     }
 
     public function like()

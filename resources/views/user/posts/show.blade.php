@@ -10,15 +10,17 @@
         </a>
     </x-slot>
     <x-slot name="right">
-        <x-button-link href="{{ route('user.posts.edit', $post->id) }}">
+        <x-button-link href="{{ route('user.posts.edit', $post) }}">
             {{__('Редактировать')}}
         </x-button-link>
-        <x-button-link color="danger">
-            {{__('Удалить')}}
-        </x-button-link>
+        <x-form action="{{route('user.posts.destroy', $post)}}" method="DELETE">
+            <x-button type="submit" color="danger">
+                {{__('Удалить')}}
+            </x-button>
+        </x-form>
     </x-slot>
 </x-title>
 <div>
-    {{$post->body}}
+    {!!$post->body!!}
 </div>
 @endsection

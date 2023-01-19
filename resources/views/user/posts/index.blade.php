@@ -22,7 +22,11 @@
                     </a>
                 </h5>
                 <div class="small text-muted">
-                    {{$post->published_at}}
+                    @if($post->published_at != null)
+                        {{ $post->published_at->format('d M Y')}}
+                        @else
+                            {{__('Дата не указана')}}
+                    @endif
                 </div>
             </div>
         @endforeach

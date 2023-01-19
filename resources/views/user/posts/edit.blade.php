@@ -13,8 +13,13 @@
             <x-label>
                 {{ __('Текст поста') }}
             </x-label>
-            <x-trix name="body" value="{{ $post->body }}"></x-trix>
+            <x-trix name="body" value="{!! $post->body !!}"></x-trix>
             <x-error name="body"/>
+        </x-form-item>
+        <x-form-item>
+            <x-checkbox name="published" checked>
+                {{__('Опубликовать пост')}}
+            </x-checkbox>
         </x-form-item>
         <x-button type="submit">
             {{__('Сохранить')}}

@@ -10,5 +10,5 @@
                </a>
           </x-slot>
      </x-title>
-     {{ $post->body }}
+     {!! $post->body !!}
 @endsection
