@@ -10,11 +10,9 @@ class Currency extends Model
     use HasFactory;
 
     protected $fillable = [
-
         'name',
         'price',
         'active',
         'sort',
-
     ];
 }

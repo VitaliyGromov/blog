@@ -15,7 +15,7 @@ class PostController extends Controller
     {
         $posts = Post::query()->where('user_id', Auth::id())->paginate(12, ['title', 'published_at', 'id']);
 
-        return view('user.posts.index', compact('posts'));
+        return view('user.posts', compact('posts'));
     }
 
     public function create()
@@ -25,20 +25,27 @@ class PostController extends Controller
 
     public function store(Request $request)
     {
-        $validated = validate($request->all(), [
+        $validated = $request->validate([
             'title' => ['required', 'string', 'max:300'],
             'body' => ['required', 'string'],
             'published' => ['nullable', 'boolean'],
             'published_at' => ['nullable','string', 'date'],
         ]);
 
-        $post = Post::create([
-            'user_id' => Auth::id(),
-            'title' => $validated['title'],
-            'body' => $validated['body'],
-            'published' => $validated['published'] ?? false,
-            'published_at' => new Carbon($validated['published_at']) ?? null,
-        ]);
+        $post = new Post();
+
+        $post->title = $validated['title'];
+        $post->body = $validated['body'];
+        $post->user_id = 16;
+        $post->saveOrFail();
+        
+        // Post::create([
+        //     'title' => $validated['title'],
+        //     'body' => $validated['body'],
+        //     'published' => $validated['published'] ?? false,
+        //     'published_at' => new Carbon($validated['published_at']) ?? null,
+        //     'user_id' => Auth::id(),
+        // ]);
 
         return redirect()->route('user.posts.show', compact('post'));
     }
