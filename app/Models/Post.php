@@ -14,7 +14,8 @@ class Post extends Model
         'title', 
         'body', 
         'published', 
-        'published_at',       
+        'published_at',
+        'category_id',       
     ];
 
     protected $casts = [

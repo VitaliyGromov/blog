@@ -55,24 +55,25 @@ class PostController extends Controller
         return view('user.posts.edit', compact('post'));
     }
 
-    public function update(Request $request)
+    public function update(Request $request, Post $post)
     {
-        $validated = validate($request->all(), [
+
+        $validated = $request->validate([
             'title' => ['required', 'string', 'max:300'],
             'body' => ['required', 'string'],
-            'published' => ['nullable', 'boolean'],
+            'published' => ['nullable'],
             'published_at' => ['nullable','string', 'date'],
         ]);
 
-        $post = Post::query()->update([
-            'user_id' => User::value('id'),
+        $post->update([
             'title' => $validated['title'],
             'body' => $validated['body'],
             'published' => $validated['published'] ?? false,
             'published_at' => new Carbon($validated['published_at']) ?? null,
+            'user_id' => Auth::id(),
         ]);
 
-        return redirect()->route('user.posts.show', compact('post'));
+        return redirect()->route('user');
     }
 
     public function destroy(Post $post)

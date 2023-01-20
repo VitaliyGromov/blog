@@ -39,5 +39,8 @@
         <x-button type="submit">
             {{__('Создать')}}
         </x-button>
+        <x-button-link color="secondary" href="{{route('user.posts')}}">
+            {{__('Отмена')}}
+        </x-button-link>
      </x-form>
 @endsection 

@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('main.content')
-     <x-form action="{{ route('user.posts.update', $post->id) }}" method="PUT">
+     <x-form action="{{ route('user.posts.update', $post) }}" method="PUT">
         <x-form-item>
             <x-label>
                 {{ __('Заголовок') }}
@@ -15,6 +15,13 @@
             </x-label>
             <x-trix name="body" value="{!! $post->body !!}"></x-trix>
             <x-error name="body"/>
+        </x-form-item>
+        <x-form-item>
+            <x-label>
+                {{__('Дата публикации')}}
+            </x-label>
+            <x-input name="published_at" type="date"/>
+            <x-error name="published_at"/>
         </x-form-item>
         <x-form-item>
             <x-checkbox name="published" checked>

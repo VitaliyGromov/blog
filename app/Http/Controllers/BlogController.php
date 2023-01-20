@@ -24,9 +24,4 @@ class BlogController extends Controller
     {
         return view('blog.show', compact('post'));
     }
-
-    public function like($post)
-    {
-        return 'Поставить лайк на пост';
-    }
 }
