@@ -13,11 +13,12 @@ return new class extends Migration
             $table->timestamps();
 
             $table->string('first_name');
-            $table->string(' ');
+            $table->string('last_name');
 
             $table->string('email')->unique();
             $table->string('avatar')->nullable();
             $table->string('active')->default(true);
+            $table->boolean('admin')->default(true);
 
             $table->string('password');
             $table->rememberToken();

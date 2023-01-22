@@ -20,12 +20,5 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
-        \App\Models\Category::factory()->create([
-            'category_name' => 'Программирование',
-        ]);
-
-        \App\Models\Category::factory()->create([
-            'category_name' => 'Музыка',
-        ]);
     }
 }

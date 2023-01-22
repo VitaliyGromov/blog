@@ -12,7 +12,7 @@
           </div>
           <div class="col-12">
                <x-form-item>
-                    <x-select name="category_id" value="{{ request('category_id') }}" :options="[null => __('Все категории'), '1' => 'Первая категроия', '2'=> 'Вторая категория']"/>
+                    <x-select name="category_id" value="{{ request('category_id')}}" :options="$categoriesNames"/>
                </x-form-item>
           </div>
           <div class="col-12">
@@ -21,7 +21,7 @@
                </x-form-item>
           </div>
      </x-form>
-     @if(empty($posts))
+     @if(sizeof($posts) === 0)
           {{__('Нет ни одного поста')}}
      @else
           <div class="row">

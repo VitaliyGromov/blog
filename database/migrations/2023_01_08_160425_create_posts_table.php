@@ -14,9 +14,11 @@ return new class extends Migration
 
             $table->string('title');
             $table->text('body');
-            $table->boolean('published')->default(true);
-            $table->timestamp('published_at')->nullable();       
             
+            $table->boolean('published')->default(true);
+            $table->timestamp('published_at')->nullable();
+
+            $table->foreignId('category_id')->nullable()->constrained('categories');      
             $table->foreignId('user_id')->constrained('users');
         });
     }
