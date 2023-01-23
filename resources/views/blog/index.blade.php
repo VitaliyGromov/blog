@@ -12,7 +12,7 @@
           </div>
           <div class="col-12">
                <x-form-item>
-                    <x-select name="category_id" value="{{ request('category_id')}}" :options="$categoriesNames"/>
+                    <x-category-select :categories="$categories"/>
                </x-form-item>
           </div>
           <div class="col-12">

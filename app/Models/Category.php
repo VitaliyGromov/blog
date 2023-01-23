@@ -9,14 +9,9 @@ class Category extends Model
 {
     use HasFactory;
 
-    public function posts()
+    static public function getAllCategories()
     {
-        return $this->hasMany(Post::class, 'category_id');
-    }
-
-    public function getAllCategories()
-    {
-        return $this->all('id', 'category_name');
+        return self::all('id', 'category_name');
     }
 
     protected $fillable = [

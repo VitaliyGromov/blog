@@ -2,44 +2,35 @@
 
 namespace App\Http\Controllers\User;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\PostFormRequest;
 use App\Models\Post;
-use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Category;
 
 class PostController extends Controller
 {
-    public function index(Request $request)
+    public function index()
     {
-        $posts = Post::query()->where('user_id', Auth::id())->paginate(12, ['title', 'published_at', 'id']);
+        $posts = Post::getPostsByUser();
 
         return view('user.posts.index', compact('posts'));
     }
 
     public function create()
     {
-        return view('user.posts.create');
+        $categories = Category::getAllCategories();
+
+        return view('user.posts.create', compact('categories'));
     }
 
-    public function store(Request $request)
+    public function store(PostFormRequest $request)
     {
-        $validated = $request->validate([
-            'title' => ['required', 'string', 'max:300'],
-            'body' => ['required', 'string'],
-            'published' => ['nullable'],
-            'published_at' => ['nullable','string', 'date'],
-        ]);
-
+        $validated = $request->validated();
+    
         $post = new Post();
 
-        $post->create([
-            'title' => $validated['title'],
-            'body' => $validated['body'],
-            'published' => $validated['published'] ?? false,
-            'published_at' => new Carbon($validated['published_at']) ?? null,
-            'user_id' => Auth::id(),
-        ]);
+        $post->create([...$validated, 'user_id' => Auth::id()]);
 
         return redirect()->route('user');
     }
@@ -51,26 +42,16 @@ class PostController extends Controller
 
     public function edit(Post $post)
     {  
-        return view('user.posts.edit', compact('post'));
+        $categories = Category::getAllCategories();
+        
+        return view('user.posts.edit', compact('post', 'categories'));
     }
 
-    public function update(Request $request, Post $post)
+    public function update(PostFormRequest $request, Post $post)
     {
+        $validated = $request->validated();
 
-        $validated = $request->validate([
-            'title' => ['required', 'string', 'max:300'],
-            'body' => ['required', 'string'],
-            'published' => ['nullable'],
-            'published_at' => ['nullable','string', 'date'],
-        ]);
-
-        $post->update([
-            'title' => $validated['title'],
-            'body' => $validated['body'],
-            'published' => $validated['published'] ?? false,
-            'published_at' => new Carbon($validated['published_at']) ?? null,
-            'user_id' => Auth::id(),
-        ]);
+        $post->update([...$validated, 'user_id' => Auth::id()]);
 
         return redirect()->route('user');
     }

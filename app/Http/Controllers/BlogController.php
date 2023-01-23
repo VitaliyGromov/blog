@@ -10,29 +10,18 @@ class BlogController extends Controller
 {
     public function index(Request $request)
     {
-        $categories = new Category();
-
-        $allCategories = $categories->getAllCategories()->toArray();
-
-        $categoriesNames = [];
-
-        for ($i = 0; $i < sizeof($allCategories); $i ++){
-            array_push($categoriesNames, $allCategories[$i]['category_name']);
-        }
+        $categories = Category::getAllCategories();
 
         $validated = $request->validate([
             'limit' => ['nullable', 'integer', 'min:1', 'max:100'],
-            'pabe' => ['nullable', 'integer', 'min:1', 'max:100'],
+            'page' => ['nullable', 'integer', 'min:1', 'max:100'],
         ]);
 
         $limit = $validated['limit'] ?? 12;
 
-        $posts = Post::query()
-            ->where('published', true)
-            ->orderBy('published_at', 'desc')
-            ->paginate($limit, ['id', 'title', 'published_at']);
+        $posts = Post::allPosts($limit);
 
-        return view('blog.index', compact('posts', 'categoriesNames'));
+        return view('blog.index', compact('posts', 'categories'));
     }
 
     public function show(Post $post)

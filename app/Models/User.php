@@ -12,10 +12,6 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
-    public function posts(){
-        return $this->hasMany(Post::class);
-    }
-
     protected $attributes = [
         'active' => true,
         'admin' => false,

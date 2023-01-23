@@ -4,15 +4,25 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Facades\Auth;
 
 class Post extends Model
 {
     use HasFactory;
 
-    public function author(): BelongsTo 
+    static public function allPosts($limit)
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return self::query()
+            ->where('published', true)
+            ->orderBy('published_at', 'desc')
+            ->paginate($limit, ['id', 'title', 'published_at']);
+    }
+
+    static public function getPostsByUser()
+    {
+        return self::query()
+            ->where('user_id', Auth::id())
+            ->paginate(12, ['title', 'published_at', 'id']);
     }
 
     protected $fillable = [

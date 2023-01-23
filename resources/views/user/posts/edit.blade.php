@@ -24,6 +24,12 @@
             <x-error name="published_at"/>
         </x-form-item>
         <x-form-item>
+            <x-label>
+                {{__('Категория')}}
+            </x-label>
+            <x-category-select :categories="$categories"/>
+       </x-form-item>
+        <x-form-item>
             <x-checkbox name="published" checked>
                 {{__('Опубликовать пост')}}
             </x-checkbox>
