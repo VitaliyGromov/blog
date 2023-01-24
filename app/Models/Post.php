@@ -15,7 +15,7 @@ class Post extends Model
         return self::query()
             ->where('published', true)
             ->orderBy('published_at', 'desc')
-            ->paginate($limit, ['id', 'title', 'published_at']);
+            ->paginate($limit, ['id', 'title', 'published_at', 'category_id']);
     }
 
     static public function getPostsByUser()

@@ -27,6 +27,8 @@ class PostController extends Controller
     public function store(PostFormRequest $request)
     {
         $validated = $request->validated();
+
+        dd($validated);
     
         $post = new Post();
 
@@ -37,7 +39,9 @@ class PostController extends Controller
 
     public function show(Post $post)
     {
-        return view('user.posts.show', compact('post'));
+        $category = Category::getCategoryNameById($post->category_id);
+
+        return view('user.posts.show', compact('post', 'category'));
     }
 
     public function edit(Post $post)

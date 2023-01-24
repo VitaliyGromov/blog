@@ -10,5 +10,15 @@
                </a>
           </x-slot>
      </x-title>
-     {!! $post->body !!}
+     <article>
+          {!! $post->body !!}
+     </article>
+     <div class="d-flex align-self-start mt-5">
+          <p>
+              {{__('Категория:')}}
+          </p>
+          <p>
+               {{ $category }}
+          </p>
+      </div>
 @endsection

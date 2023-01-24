@@ -12,11 +12,6 @@
           </div>
           <div class="col-12">
                <x-form-item>
-                    <x-category-select :categories="$categories"/>
-               </x-form-item>
-          </div>
-          <div class="col-12">
-               <x-form-item>
                     <x-button type="submit">{{__('Поиск')}}</x-button>
                </x-form-item>
           </div>

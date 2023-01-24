@@ -17,7 +17,7 @@
         @foreach($posts as $post)
             <div class="mb-5">
                 <h5>
-                    <a href="{{ route('user.posts.show', $post->id) }}">
+                    <a href="{{ route('user.posts.show', $post->id) }}" class="text-decoration-none">
                         {{ $post->title }}
                     </a>
                 </h5>

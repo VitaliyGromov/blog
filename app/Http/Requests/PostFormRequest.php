@@ -28,6 +28,7 @@ class PostFormRequest extends FormRequest
             'body' => ['required', 'string'],
             'published' => ['nullable'],
             'published_at' => ['nullable','string', 'date'],
+            'category_id' => ['required'],
         ];
     }
 
@@ -44,7 +45,6 @@ class PostFormRequest extends FormRequest
         return [
             'title' => 'заголовок',
             'body' => 'содержание',
-            'published' => 'Опубликовать',
             'published_at' => 'Дата публикации',
         ];
     }

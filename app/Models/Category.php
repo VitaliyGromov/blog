@@ -9,9 +9,17 @@ class Category extends Model
 {
     use HasFactory;
 
-    static public function getAllCategories()
+    public static function getAllCategories()
     {
         return self::all('id', 'category_name');
+    }
+
+    public static function getCategoryNameById($id)
+    {
+        return self::query()
+            ->where('id', $id)
+            ->get('category_name')
+            ->toArray();
     }
 
     protected $fillable = [

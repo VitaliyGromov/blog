@@ -3,7 +3,6 @@
 @section('main.content')
 <x-title>
     {{ $post->title}}
-
     <x-slot name="link">
         <a href="{{ route('user.posts') }}">
             {{__('Назад')}}

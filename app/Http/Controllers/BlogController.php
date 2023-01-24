@@ -10,8 +10,6 @@ class BlogController extends Controller
 {
     public function index(Request $request)
     {
-        $categories = Category::getAllCategories();
-
         $validated = $request->validate([
             'limit' => ['nullable', 'integer', 'min:1', 'max:100'],
             'page' => ['nullable', 'integer', 'min:1', 'max:100'],
@@ -21,11 +19,17 @@ class BlogController extends Controller
 
         $posts = Post::allPosts($limit);
 
-        return view('blog.index', compact('posts', 'categories'));
+        return view('blog.index', compact('posts'));
     }
 
     public function show(Post $post)
     {
-        return view('blog.show', compact('post'));
+        $categoryName = Category::getCategoryNameById($post->category_id);
+
+        foreach($categoryName as $value){
+            $category = $value['category_name'];
+        }
+        
+        return view('blog.show', compact('post', 'category'));
     }
 }

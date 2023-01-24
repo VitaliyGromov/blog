@@ -1,7 +1,7 @@
 <x-card>
     <div class="card-body">
         <h5>
-            <a href="{{ route('blog.show', $post->id) }}">
+            <a href="{{ route('blog.show', $post->id) }}" class="text-decoration-none">
                 <p>{{ $post->title }}</p>
             </a>
         </h5>
