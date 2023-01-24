@@ -15,10 +15,12 @@
                 <x-form-item>
                     <x-label>{{__('Email')}}</x-label>
                     <x-input type="email" name="email"/>
+                    <x-error name="email"/>
                 </x-form-item>
                 <x-form-item>
                         <x-label>{{__('Пароль')}}</x-label>
                         <x-input type="password" name="password"/>
+                        <x-error name="password"/>
                     </x-form-item>
                 <x-form-item>
                 <x-checkbox value="1" name="remember" id="remeber" for="remeber">
