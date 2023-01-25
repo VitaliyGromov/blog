@@ -21,6 +21,13 @@ class PostFormRequest extends FormRequest
      *
      * @return array<string, mixed>
      */
+    protected function prepareForValidation()
+    {
+        $this->merge([
+            'published' => $this->has('published')?true:false,
+        ]);
+    }
+    
     public function rules()
     {
         return [
@@ -35,17 +42,9 @@ class PostFormRequest extends FormRequest
     public function messages()
     {
         return [
-            'required' => 'Поле :atribute не должно быть пустым',
-            'date' => 'Поле :atribute должно содержать дату'
-        ];
-    }
-
-    public function attributes()
-    {
-        return [
-            'title' => 'заголовок',
-            'body' => 'содержание',
-            'published_at' => 'Дата публикации',
+            'title.required' => 'Ну чел, как без названия-то...',
+            'body.required' => 'Надо бы написать что-то, братан...',
+            'date' => 'Странная дата, бро',
         ];
     }
 }

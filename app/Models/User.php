@@ -12,6 +12,14 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    static public function getUserNameById($user_id)
+    {
+        return self::query()
+            ->where('id', $user_id)
+            ->get(['last_name', 'first_name'])
+            ->toArray();
+    }
+
     protected $attributes = [
         'active' => true,
         'admin' => false,

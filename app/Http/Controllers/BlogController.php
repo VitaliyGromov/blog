@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Post;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class BlogController extends Controller
@@ -29,7 +30,14 @@ class BlogController extends Controller
         foreach($categoryName as $value){
             $category = $value['category_name'];
         }
+
+        $user = User::getUserNameById($post->user_id);
+
+        foreach($user as $userInfo){
+            $userLastName = $userInfo['last_name'];
+            $userFirstName = $userInfo['first_name'];
+        }
         
-        return view('blog.show', compact('post', 'category'));
+        return view('blog.show', compact('post', 'category', 'userFirstName', 'userLastName'));
     }
 }

@@ -15,10 +15,21 @@
      </article>
      <div class="d-flex align-self-start mt-5">
           <p>
-              {{__('Категория:')}}
+              {{__('Категория:')}}&nbsp
           </p>
           <p>
                {{ $category }}
           </p>
-      </div>
+     </div>
+     <div class="d-flex align-self-start mt-3">
+          <p>
+              {{__('Автор:')}}&nbsp
+          </p>
+          <p>
+               {{ $userFirstName }}&nbsp
+          </p>
+          <p>
+               {{$userLastName}}
+          </p>
+     </div>
 @endsection
