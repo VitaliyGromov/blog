@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\LoginStoreRequest;
 use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
@@ -12,14 +12,11 @@ class LoginController extends Controller
         return view('login.index');
     }
 
-    public function store(Request $request)
+    public function store(LoginStoreRequest $request)
     {  
-        $request->validate([
-            'email' => ['required', 'string', 'email'],
-            'password' => ['required', 'string'],
-        ]);
-        
-        if(Auth::attempt($request->only('email', 'password'))){
+        $validated = $request->validated();
+
+        if(Auth::attempt($validated)){
             return redirect()->route('user');
         }
     }

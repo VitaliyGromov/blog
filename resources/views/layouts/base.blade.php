@@ -10,11 +10,7 @@
 </head>
 <body>
     <div class="d-flex flex-column justify-content-between min-vh-100">
-        @if($alert=session()->pull('alert'))
-            <x-alert type="success" message="{{__('Добро пожаловать')}}"/>
-        @endif
         @include('include.header')
-
         <main class="flex-grow-1 py-3">
             @yield('content')
         </main>

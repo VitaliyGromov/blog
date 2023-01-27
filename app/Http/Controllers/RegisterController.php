@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UserStoreRequest;
 use App\Models\User;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class RegisterController extends Controller
@@ -12,15 +12,9 @@ class RegisterController extends Controller
     {
         return view('register.index');
     }
-    public function store(Request $request)
+    public function store(UserStoreRequest $request)
     {
-        $validated = $request->validate([
-            'first-name' => ['required', 'string', 'max:50'],
-            'last-name' => ['required', 'string', 'max:50'],
-            'email' => ['required', 'string', 'email', 'unique:users'],
-            'password' => ['required', 'string', 'min:7', 'max:50'],
-            'data-confirm' => ['accepted']
-        ]);
+        $validated = $request->validated();
 
         $user = User::create([
             'first_name' => $validated['first-name'],

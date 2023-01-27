@@ -2,7 +2,7 @@
 
 @section('main.content')
      <x-title>
-          {{__('Список постов')}}
+          {{__('Посты')}}
      </x-title>
      <x-form method="GET">
           <div class="col-12">

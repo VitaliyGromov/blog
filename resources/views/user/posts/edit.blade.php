@@ -20,7 +20,7 @@
             <x-label>
                 {{__('Дата публикации')}}
             </x-label>
-            <x-input name="published_at" type="date" value="{{$post->published_at}}"/>
+            <x-input name="published_at" type="date" value="{{$post->published_at->format('Y-m-d')}}"/>
             <x-error name="published_at"/>
         </x-form-item>
         <x-form-item>
