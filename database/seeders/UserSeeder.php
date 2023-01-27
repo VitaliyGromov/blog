@@ -9,11 +9,6 @@ use Illuminate\Database\Seeder;
 
 class UserSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
     public function run()
     {
         $adminRole = Role::where('slug', 'admin')->first();
@@ -32,12 +27,12 @@ class UserSeeder extends Seeder
         $adminUser->save();
 
         $adminUser->roles()->attach($adminRole);
-        $adminUser->roles()->attach([$createPostsPermission, $editPostsPermission, $deletePostsPermission, $deletePostsFromBlog]);
+        $adminUser->permissions()->attach([$createPostsPermission, $editPostsPermission, $deletePostsPermission, $deletePostsFromBlog]);
 
         $regularUser = new User();
         $regularUser->first_name = 'Ivan';
         $regularUser->last_name = 'Mracobesov';
-        $regularUser->email = 'ivan.ivan@03.com';
+        $regularUser->email = 'ivan.ivan@ivan.com';
         $regularUser->password = bcrypt('654321');
         $regularUser->save();
 

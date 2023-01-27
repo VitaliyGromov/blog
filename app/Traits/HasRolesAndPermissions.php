@@ -7,17 +7,17 @@ use App\Models\Role;
 
 trait HasRolesAndPermissions 
 {
-    public function roles(): mixed
+    public function roles()
     {
         return $this->belongsToMany(Role::class, 'users_roles');
     }
 
-    public function permissions():mixed
+    public function permissions()
     {
         return $this->belongsToMany(Permission::class, 'users_permissions');
     }
 
-    public function hasRole(... $roles): bool
+    public function hasRole(...$roles): bool
     {
         foreach ($roles as $role) {
             if ($this->roles->contains('slug', $role)) {
@@ -49,10 +49,10 @@ trait HasRolesAndPermissions
 
     public function getAllPermissions(array $permissions)
     {
-        return Permission::whereIn('slug',$permissions)->get();
+        return Permission::whereIn('slug', $permissions)->get();
     }
 
-    public function givePermissionsTo(... $permissions)
+    public function givePermissionsTo(...$permissions)
     {
         $permissions = $this->getAllPermissions($permissions);
             if($permissions === null) {
@@ -63,14 +63,14 @@ trait HasRolesAndPermissions
     }
 
 
-    public function deletePermissions(... $permissions )
+    public function deletePermissions(...$permissions )
     {
         $permissions = $this->getAllPermissions($permissions);
         $this->permissions()->detach($permissions);
         return $this;
     }
 
-    public function refreshPermissions(... $permissions )
+    public function refreshPermissions(...$permissions )
     {
         $this->permissions()->detach();
         return $this->givePermissionsTo($permissions);

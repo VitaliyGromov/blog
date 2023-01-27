@@ -24,7 +24,6 @@ class User extends Authenticatable
 
     protected $attributes = [
         'active' => true,
-        'admin' => false,
     ];
 
     protected $fillable = [
