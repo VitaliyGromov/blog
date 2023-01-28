@@ -12,6 +12,9 @@
         <li class="nav-item">
           <a class="nav-link {{ activeLink('blog*') }}" href="{{ route('blog') }}">{{__('Блог')}}</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link {{ activeLink('dashboard') }}" href="{{ route('dashboard') }}">{{__('Админка')}}</a>
+        </li>
       </ul>
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
         <li class="nav-item">

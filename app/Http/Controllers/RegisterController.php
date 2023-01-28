@@ -23,6 +23,8 @@ class RegisterController extends Controller
             'password' => bcrypt($validated['password']),
         ]);
 
+        $user->assignRole('user');
+
         Auth::login($user);
 
         return redirect()->route('blog');
