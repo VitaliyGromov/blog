@@ -64,10 +64,5 @@ class PostController extends Controller
         
         return redirect()->route('user');
     }
-
-    public function like()
-    {
-        return 'Like + 1';
-    }
 }
  

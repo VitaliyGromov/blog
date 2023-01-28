@@ -12,7 +12,6 @@ Route::prefix('user')->middleware('auth', 'active')->group(function(){
     Route::get('posts/{post}/edit', [PostController::class, 'edit'])->name('user.posts.edit');
     Route::put('posts/{post}', [PostController::class, 'update'])->name('user.posts.update');
     Route::delete('posts/{post}', [PostController::class, 'destroy'])->name('user.posts.destroy');
-    Route::put('posts/{post}/likes', [PostController::class, 'like'])->name('user.posts.like');
     
 });
 

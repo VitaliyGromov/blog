@@ -32,12 +32,12 @@
                         <x-label>{{__('Пароль')}}</x-label>
                         <x-input type="password" name="password"/>
                         <x-error name="password"/>
-                    </x-form-item>
+                </x-form-item>
                 <x-form-item>
-                <x-checkbox value="1" name="data-confirm" id="data-confirm" for="data-confirm">
-                         {{__('Соглашаюсь на обработку данных')}}
-                </x-checkbox>
-                <x-error name="data-confirm"/>
+                    <x-checkbox value="1" name="data-confirm" id="data-confirm" for="data-confirm">
+                        {{__('Соглашаюсь на обработку данных')}}
+                    </x-checkbox>
+                    <x-error name="data-confirm"/>
                 </x-form-item>
                 <x-button type="submit">
                     {{__('Зарегистрироваться')}}

@@ -14,6 +14,11 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable, HasRoles;
 
+    static public function getAllUsers()
+    {
+        return self::query()->get();
+    }
+
     static public function getUserNameById($user_id)
     {
         return self::query()
