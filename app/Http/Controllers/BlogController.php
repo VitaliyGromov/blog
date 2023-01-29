@@ -25,19 +25,10 @@ class BlogController extends Controller
 
     public function show(Post $post)
     {
-        $categoryName = Category::getCategoryNameById($post->category_id);
-
-        foreach($categoryName as $value){
-            $category = $value['category_name'];
-        }
+        $category = Category::getCategoryNameById($post->category_id);
 
         $user = User::getUserNameById($post->user_id);
-
-        foreach($user as $userInfo){
-            $userLastName = $userInfo['last_name'];
-            $userFirstName = $userInfo['first_name'];
-        }
         
-        return view('blog.show', compact('post', 'category', 'userFirstName', 'userLastName'));
+        return view('blog.show', compact('post', 'category', 'user'));
     }
 }

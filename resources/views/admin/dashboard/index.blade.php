@@ -1,11 +1,6 @@
 @extends('layouts.main')
 
 @section('main.content')
-<div class="m-1">
-  <x-button-link color="success" href="{{ route('admin.users.create') }}">
-    {{__('Создать пользователя')}}
-  </x-button-link>
-</div>
 <table class="table">
     <thead>
       <th scope="col">{{__('id')}}</th>
@@ -26,7 +21,7 @@
         <td>{{$user->email}}</td>
         <td>
             <div>
-                <x-button-link>
+                <x-button-link href="{{ route('admin.users.edit', $user) }}">
                     {{__('Настройки')}}
                 </x-button-link>
             </div>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use Spatie\Permission\Models\Permission;
 
 class AdminController extends Controller
 {
@@ -14,22 +15,14 @@ class AdminController extends Controller
         return view('admin.dashboard.index', compact('users'));
     }
 
-    public function create()
+    public function edit(User $user)
     {
-        return view('admin.users.create');
+        $permissions = Permission::query()->get();
+
+        return view('admin.users.edit', compact('user', 'permissions'));
     }
 
-    public function store()
-    {
-        return 'User store request';
-    }
-
-    public function edit()
-    {
-        return view('admin.users.edit');
-    }
-
-    public function update()
+    public function update(User $user)
     {
         return 'User update request';
     }

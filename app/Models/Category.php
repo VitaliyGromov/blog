@@ -18,8 +18,7 @@ class Category extends Model
     {
         return self::query()
             ->where('id', $id)
-            ->get('category_name')
-            ->toArray();
+            ->first();
     }
 
     protected $fillable = [

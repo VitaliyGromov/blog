@@ -2,7 +2,7 @@
 
 @section('main.content')
      <x-title>
-          {{ $post->title}}
+          {{$post->title}}
 
           <x-slot name="link">
                <a href="{{ route('blog') }}">
@@ -18,7 +18,7 @@
               {{__('Категория:')}}&nbsp
           </p>
           <p>
-               {{ $category }}
+               {{ $category->category_name }}
           </p>
      </div>
      <div class="d-flex align-self-start mt-3">
@@ -26,10 +26,10 @@
               {{__('Автор:')}}&nbsp
           </p>
           <p>
-               {{ $userFirstName }}&nbsp
+               {{ $user->first_name}}&nbsp
           </p>
           <p>
-               {{$userLastName}}
+               {{$user->last_name}}
           </p>
      </div>
 @endsection
