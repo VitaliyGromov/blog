@@ -16,13 +16,9 @@
                 <x-checkbox name="{{$permission->name}}">
                     {{$permission->name}}
                 </x-checkbox>
+                <x-error name="{{$permission->name}}"/>
             </x-form-item>
         @endforeach
-        </div>
-        <div class="mb-3 border-top pt-1">
-            <x-checkbox name="is_active">
-                {{__('Активен')}}
-            </x-checkbox>
         </div>
         <x-button type="submit">
             {{__('Сохранить')}}

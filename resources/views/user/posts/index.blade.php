@@ -20,6 +20,11 @@
                     <a href="{{ route('user.posts.show', $post->id) }}" class="text-decoration-none">
                         {{ $post->title }}
                     </a>
+                    @if(!$post->published)
+                        <span class="text-muted">
+                            {{__('(Не опубликован или снят с публикации)')}}
+                        </span>
+                    @endif
                 </h5>
                 <div class="small text-muted">
                     @if($post->published_at != null)

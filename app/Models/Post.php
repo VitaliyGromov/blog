@@ -22,7 +22,7 @@ class Post extends Model
     {
         return self::query()
             ->where('user_id', Auth::id())
-            ->paginate(12, ['title', 'published_at', 'id']);
+            ->paginate(12, ['title', 'published_at', 'id', 'published']);
     }
 
     protected $fillable = [

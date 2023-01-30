@@ -28,9 +28,11 @@
         </td>
         <td>
             <div>
-                <x-button-link color="danger">
-                    {{__('Удалить')}}
-                </x-button-link>
+              <x-form action="{{route('admin.users.destroy', $user)}}" method="DELETE">
+                <x-button type="submit" color="danger">
+                  {{__('Удалить')}}
+              </x-button>
+              </x-form>
             </div>
         </td>
       </tr>

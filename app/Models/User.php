@@ -14,7 +14,7 @@ class User extends Authenticatable
 
     static public function getAllUsers()
     {
-        return self::query()->get();
+        return self::query()->whereNot('email', 'admin@admin.com')->get();
     }
 
     static public function getUserNameById($user_id)

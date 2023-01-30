@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UpdateUserPermissionsRequest;
 use App\Models\User;
 use Spatie\Permission\Models\Permission;
 
@@ -22,13 +23,21 @@ class AdminController extends Controller
         return view('admin.users.edit', compact('user', 'permissions'));
     }
 
-    public function update(User $user)
+    public function update(User $user, UpdateUserPermissionsRequest $request)
     {
-        return 'User update request';
+        $validated = $request->all();
+
+        dd($validated);
+
+        $user->givePermissionTo($validated);
+
+        return redirect()->route('admin.dashboard');
     }
 
-    public function destroy()
+    public function destroy(User $user)
     {
-        return 'User destroy request';
+        $user->delete();
+        
+        return redirect()->route('admin.dashboard');
     }
 }
