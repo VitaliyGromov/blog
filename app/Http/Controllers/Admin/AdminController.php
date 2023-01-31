@@ -25,11 +25,18 @@ class AdminController extends Controller
 
     public function update(User $user, UpdateUserPermissionsRequest $request)
     {
-        $validated = $request->all();
+        $validated = $request->validated();
 
-        dd($validated);
+        $permissions = [];
 
-        $user->givePermissionTo($validated);
+        foreach($validated as $key => $value)
+        {
+            if($value){
+                array_push($permissions, $key);
+            }
+        }
+
+        $user->syncPermissions($permissions);
 
         return redirect()->route('admin.dashboard');
     }

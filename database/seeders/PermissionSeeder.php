@@ -15,7 +15,7 @@ class PermissionSeeder extends Seeder
      */
     public function run()
     {
-        $permissions = ['delete posts', 'edit posts'];
+        $permissions = ['delete_posts', 'edit_posts'];
 
         foreach($permissions as $permission){
             Permission::create([

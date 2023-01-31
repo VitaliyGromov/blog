@@ -14,15 +14,16 @@ class UpdateUserPermissionsRequest extends FormRequest
     protected function prepareForValidation()
     {
         return $this->merge([
-            'delete posts' => $this->has('delete posts')?true:false,
-            'edit posts' => $this->has('edit posts')?true:false,
+            'delete_posts' => $this->has('delete_posts')?true:false,
+            'edit_posts' => $this->has('edit_posts')?true:false,
         ]);
     }
 
     public function rules()
     {
         return [
-            //
+            'delete_posts' => 'boolean',
+            'edit_posts' => 'boolean',
         ];
     }
 

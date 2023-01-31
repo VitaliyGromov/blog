@@ -13,9 +13,14 @@
             <h2>{{__('Настройки разрешений')}}</h2>
             @foreach($permissions as $permission)
             <x-form-item>
-                <x-checkbox name="{{$permission->name}}">
+                <input class="form-check-input" name="{{$permission->name}}" 
+                type="checkbox" value="1" 
+                @if ($user->hasPermissionTo($permission->name)) 
+                checked 
+                @endif>
+                <label for="{{$permission->name}}">
                     {{$permission->name}}
-                </x-checkbox>
+                </label>
                 <x-error name="{{$permission->name}}"/>
             </x-form-item>
         @endforeach

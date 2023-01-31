@@ -11,7 +11,7 @@
           </x-slot>
           <x-slot name="right">
                <div class="d-flex justify-content-end">
-                    @can('delete posts')
+                    @can('delete_posts')
                     <div class="me-1">
                          <x-form action="{{route('blog.destroy', $post)}}" method="DELETE">
                               <x-button type="submit" color="danger">
@@ -20,7 +20,7 @@
                          </x-form>
                     </div>
                     @endcan
-                    @can('edit posts')
+                    @can('edit_posts')
                          <x-button-link href="{{ route('blog.edit', $post) }}">
                               {{__('Редактировать')}}
                          </x-button-link>

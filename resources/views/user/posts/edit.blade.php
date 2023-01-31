@@ -27,7 +27,7 @@
             <x-label>
                 {{__('Категория')}}
             </x-label>
-            <x-category-select :categories="$categories"/>
+            <x-category-select :categories="$categories" :category_id="$post->category_id"/>
        </x-form-item>
         <x-form-item>
             <x-checkbox name="published" checked>

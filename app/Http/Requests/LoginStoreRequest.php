@@ -25,7 +25,7 @@ class LoginStoreRequest extends FormRequest
     {
         return [
             'email' => ['required', 'string', 'email'],
-            'password' => ['required', 'string'],
+            'password' => ['required', 'string'], //TODO add check, that user exists in db
         ];
     }
 }

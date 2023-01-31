@@ -13,9 +13,9 @@ Route::middleware('auth', 'active')->group(function(){
 
     Route::get('blog', [BlogController::class, 'index'])->name('blog');
     Route::get('blog/{post}', [BlogController::class, 'show'])->name('blog.show');
-    Route::get('blog/{post}/edit', [BlogController::class, 'edit'])->name('blog.edit')->middleware('permission:edit posts');
-    Route::put('blog/{post}', [BlogController::class, 'update'])->name('blog.update')->middleware('permission:edit posts');;
-    Route::delete('blog/{post}', [BlogController::class, 'destroy'])->name('blog.destroy')->middleware('permission:delete posts');;
+    Route::get('blog/{post}/edit', [BlogController::class, 'edit'])->name('blog.edit')->middleware('permission:edit_posts');
+    Route::put('blog/{post}', [BlogController::class, 'update'])->name('blog.update')->middleware('permission:edit_posts');;
+    Route::delete('blog/{post}', [BlogController::class, 'destroy'])->name('blog.destroy')->middleware('permission:delete_posts');;
     
     Route::resource('posts/{post}/comments', CommentController::class);
 });
