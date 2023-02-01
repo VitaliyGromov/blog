@@ -6,20 +6,16 @@ use App\Http\Requests\PostFormRequest;
 use App\Models\Category;
 use App\Models\Post;
 use App\Models\User;
-use Illuminate\Http\Request;
+use Spatie\QueryBuilder\QueryBuilder;
 
 class BlogController extends Controller
 {
-    public function index(Request $request)
+    public function index()
     {
-        $validated = $request->validate([
-            'limit' => ['nullable', 'integer', 'min:1', 'max:100'],
-            'page' => ['nullable', 'integer', 'min:1', 'max:100'],
-        ]);
-
-        $limit = $validated['limit'] ?? 12;
-
-        $posts = Post::allPosts($limit);
+        $posts = QueryBuilder::for(Post::class)
+            ->allowedFilters(['title'])
+            ->where('published', true)
+            ->get();
 
         return view('blog.index', compact('posts'));
     }

@@ -10,12 +10,20 @@ class Post extends Model
 {
     use HasFactory;
 
-    static public function allPosts($limit)
+    static public function allPosts()
     {
         return self::query()
             ->where('published', true)
             ->orderBy('published_at', 'desc')
-            ->paginate($limit, ['id', 'title', 'published_at', 'category_id']);
+            ->paginate(12, ['id', 'title', 'published_at', 'category_id']);
+    }
+
+    static public function getPostsBySearch($search)
+    {
+        return self::query()
+            ->where('title', 'LIKE', "%{$search}%")
+            ->orWhere('body', 'LIKE', "%{$search}%")
+            ->get();
     }
 
     static public function getPostsByUser()

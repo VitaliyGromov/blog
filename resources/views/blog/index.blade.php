@@ -7,7 +7,8 @@
      <x-form method="GET">
           <div class="col-12">
                <x-form-item>
-                    <x-input name="search" placeholder="{{__('Поиск')}}" value="{{ request('search') }}"/>
+                    <x-input name="filter[title]" placeholder="{{__('Поиск по заголовку')}}" value="{{request('filter[title]')}}"/>
+                    <x-error/>
                </x-form-item>
           </div>
           <div class="col-12">
@@ -26,6 +27,6 @@
                     </div>
                @endforeach
           </div>
-          {{$posts->links()}}
+          {{-- {{$posts->links()}} --}}
      @endif
 @endsection
