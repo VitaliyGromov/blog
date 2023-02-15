@@ -18,14 +18,6 @@ class Post extends Model
             ->paginate(12, ['id', 'title', 'published_at', 'category_id']);
     }
 
-    static public function getPostsBySearch($search)
-    {
-        return self::query()
-            ->where('title', 'LIKE', "%{$search}%")
-            ->orWhere('body', 'LIKE', "%{$search}%")
-            ->get();
-    }
-
     static public function getPostsByUser()
     {
         return self::query()

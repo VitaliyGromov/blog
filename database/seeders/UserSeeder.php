@@ -5,15 +5,9 @@ namespace Database\Seeders;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
-use Spatie\Permission\Models\Role;
 
-class AdminSeeder extends Seeder
+class UserSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
     public function run()
     {
         $admin = User::create([
@@ -23,10 +17,18 @@ class AdminSeeder extends Seeder
             'password' => Hash::make('1234567890'),
         ]);
 
-        Role::create([
-            'name' => 'admin',
-        ]);
-
         $admin->assignRole('admin');
+
+        for($i = 0; $i < 10; $i++){
+
+            $user = User::create([
+                'first_name' => fake()->name(),
+                'last_name' => fake()->lastName(),
+                'email' => fake()->email(),
+                'password' => Hash::make('password123'),
+            ]);
+    
+            $user->assignRole('user');
+        }
     }
 }

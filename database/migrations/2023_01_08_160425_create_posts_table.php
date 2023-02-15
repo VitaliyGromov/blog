@@ -18,8 +18,8 @@ return new class extends Migration
             $table->boolean('published')->default(true);
             $table->timestamp('published_at')->nullable();
 
-            $table->foreignId('category_id')->nullable()->constrained('categories');      
-            $table->foreignId('user_id')->constrained('users');
+            $table->foreignId('category_id')->nullable()->constrained('categories')->onDelete('cascade');      
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
         });
     }
 

@@ -6,16 +6,12 @@ use App\Http\Requests\PostFormRequest;
 use App\Models\Category;
 use App\Models\Post;
 use App\Models\User;
-use Spatie\QueryBuilder\QueryBuilder;
 
 class BlogController extends Controller
 {
     public function index()
     {
-        $posts = QueryBuilder::for(Post::class)
-            ->allowedFilters(['title'])
-            ->where('published', true)
-            ->get();
+        $posts = Post::allPosts();
 
         return view('blog.index', compact('posts'));
     }
