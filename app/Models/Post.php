@@ -25,6 +25,13 @@ class Post extends Model
             ->paginate(12, ['title', 'published_at', 'id', 'published']);
     }
 
+    static public function getPostsBySearch($title)
+    {
+        return self::query()
+            ->where('title', 'like', "%{$title}%")
+            ->paginate(12, ['id', 'title', 'published_at', 'category_id']);
+    }
+
     protected $fillable = [
         'user_id', 
         'title', 

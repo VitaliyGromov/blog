@@ -4,11 +4,11 @@
      <x-title>
           {{__('Посты')}}
      </x-title>
-     <x-form method="GET">
+     <x-form action="{{ route('blog.search') }}" method="GET">
           <div class="col-12">
                <x-form-item>
-                    <x-input name="filter[title]" placeholder="{{__('Поиск по заголовку')}}" value="{{ request('filter[title]') }}"/>
-                    <x-error/>
+                    <x-input name="title" placeholder="{{__('Поиск по заголовку')}}" value="{{ request('title') }}"/>
+                    <x-error name="title"/>
                </x-form-item>
           </div>
           <div class="col-12">

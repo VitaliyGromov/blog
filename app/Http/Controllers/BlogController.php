@@ -6,12 +6,13 @@ use App\Http\Requests\PostFormRequest;
 use App\Models\Category;
 use App\Models\Post;
 use App\Models\User;
+use Illuminate\Http\Request;
 
 class BlogController extends Controller
 {
     public function index()
     {
-        $posts = Post::allPosts();
+        $posts = Post::allPosts(); 
 
         return view('blog.index', compact('posts'));
     }
@@ -46,5 +47,12 @@ class BlogController extends Controller
         $post->delete();
         
         return redirect()->route('blog');
+    }
+    public function search(Request $request)
+    {
+        $title = $request->input('title');
+
+
+        return view('blog.index', compact('posts'));
     }
 }
